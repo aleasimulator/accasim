@@ -24,7 +24,6 @@ SOFTWARE.
 
 from collections import deque
 from threading import Thread, Semaphore
-from multiprocessing import Process
 
 
 class AsyncWriter:
@@ -84,13 +83,7 @@ class AsyncWriter:
     def _working_loop(self):
         while not self._toTerminate or len(self._deque) > 0:
             self._sem.acquire()
-            process = Process(target=self._pre_processor_wrapper.flush, args=(self._deque, self._buffer_size))
-            process.start()
-            process.join()
-            counter_pop = 0
-            while counter_pop < self._buffer_size and len(self._deque) > 0:
-                self._deque.popleft()
-                counter_pop += 1
+            self._pre_processor_wrapper.flush(self._deque, self._buffer_size)
 
     @staticmethod
     def _dummy_pre_process(data_obj):

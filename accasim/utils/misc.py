@@ -74,7 +74,7 @@ DEFAULT_SWF_MAPPER = {
 DEFAULT_SIMULATION = {
     """
     Default and base simulation parameters. The following parameters are loaded into the :class:`.CONSTANT`.
-    This constants values can be overridden by passing as kwargs in the :class:`accasim.base.simulator_class.hpc_simulator` class instantiation.
+    This constants values can be overridden by passing as kwargs in the :class:`accasim.base.simulator_class.Simulator` class instantiation.
     
     :Note:
     
@@ -85,21 +85,16 @@ DEFAULT_SIMULATION = {
         * SCHEDULE_OUTPUT: Format of the dispatching plan file.
             * "SCHEDULE_OUTPUT": 
             
-            .. code:: 
+            .. code::
 
                 {
-                    "format": "{job_id};{user};{queue_time}__{assignations}__{start_time};{end_time};{total_nodes};{total_cpu};{total_mem};{expected_duration};",
+                    "format": "{job_id};{arrival_time};{wait_time};{end_time};{run_time};",
                     "attributes": {
                         "job_id": ("id", "str"),
-                        "user": ("user_id", "str"),
-                        "queue_time": ("queued_time", "accasim.utils.misc.str_datetime"),
-                        "start_time": ("start_time", "accasim.utils.misc.str_datetime"),
+                        "arrival_time": ("queued_time", "accasim.utils.misc.str_datetime"),
+                        "wait_time": ("waiting_time", "int"),
                         "end_time": ("end_time", "accasim.utils.misc.str_datetime"),
-                        "assignations": ("assigned_nodes", "requested_resources", "accasim.utils.misc.str_resources"),
-                        "total_nodes": ("requested_nodes", "int"),
-                        "total_cpu": ("core", "int"),
-                        "total_mem": ("mem", "int"),
-                        "expected_duration": ("expected_duration", "int")      
+                        "run_time": ("running_time", "int")
                     }
                 }
                 
@@ -145,18 +140,13 @@ DEFAULT_SIMULATION = {
         "CONFIG_FOLDER_NAME": "config/",
         "RESULTS_FOLDER_NAME": "results/",
         "SCHEDULE_OUTPUT": {
-            "format": "{job_id};{user};{queue_time}__{assignations}__{start_time};{end_time};{total_nodes};{total_cpu};{total_mem};{expected_duration};",
+            "format": "{job_id};{arrival_time};{wait_time};{end_time};{run_time};",
             "attributes": {
                 "job_id": ("id", "str"),
-                "user": ("user_id", "str"),
-                "queue_time": ("queued_time", "accasim.utils.misc.str_datetime"),
-                "start_time": ("start_time", "accasim.utils.misc.str_datetime"),
+                "arrival_time": ("queued_time", "accasim.utils.misc.str_datetime"),
+                "wait_time": ("waiting_time", "int"),
                 "end_time": ("end_time", "accasim.utils.misc.str_datetime"),
-                "assignations": ("assigned_nodes", "requested_resources", "accasim.utils.misc.str_resources"),
-                "total_nodes": ("requested_nodes", "int"),
-                "total_cpu": ("core", "int"),
-                "total_mem": ("mem", "int"),
-                "expected_duration": ("expected_duration", "int")
+                "run_time": ("running_time", "int")
             }
         },
         "PPRINT_SCHEDULE_OUTPUT": {
