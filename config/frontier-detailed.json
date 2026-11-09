@@ -1,0 +1,17 @@
+{
+    "system_name": "Frontier",
+    "start_time": 1735689600,
+    "equivalence": {
+        "processor": {
+            "core": 112
+        }
+    },
+    "groups": {
+        "g0": {
+            "core": 112
+        }
+    },
+    "resources": {
+        "g0": 9856
+    }
+}

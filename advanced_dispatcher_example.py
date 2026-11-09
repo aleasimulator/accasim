@@ -21,14 +21,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-from accasim.base.simulator_class import hpc_simulator
-from accasim.base.scheduler_class import easybf_sched
-from accasim.base.allocator_class import ffp_alloc
+from accasim.base.simulator_class import Simulator
+from accasim.base.scheduler_class import EASYBackfilling
+from accasim.base.allocator_class import FirstFit
 
 workload = 'workloads/HPC2N-2002-2.2.1-cln.swf'
 sys_cfg = 'config/HPC2N.config'
 
-allocator = ffp_alloc()
-dispatcher = easybf_sched(allocator)
-simulator = hpc_simulator(sys_cfg, dispatcher, workload, RESULTS_FOLDER_NAME='results') 
-simulator.start_simulation(visualization=False, watcher=False, debug=False)
+allocator = FirstFit()
+dispatcher = EASYBackfilling(allocator)
+simulator = Simulator(workload, sys_cfg, dispatcher, RESULTS_FOLDER_NAME='results')
+simulator.start_simulation(system_utilization=False, system_status=False, debug=False)

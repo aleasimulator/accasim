@@ -1,0 +1,14 @@
+{
+    "system_name": "Aurora",
+    "start_time": 1760360026,
+
+    "groups": {
+        "g0": {
+            "core": 1
+        }
+    },
+
+    "resources": {
+        "g0": 10624
+    }
+}

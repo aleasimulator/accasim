@@ -101,7 +101,6 @@ ENV/
 .mypy_cache/
 /.project
 /.pydevproject
-/run.py
 /cph_example.py
 /prb_example.py
 /extra/

@@ -1,0 +1,14 @@
+{
+    "system_name": "Frontier",
+    "start_time": 1735689600,
+
+    "groups": {
+        "g0": {
+            "core": 1
+        }
+    },
+
+    "resources": {
+        "g0": 9856
+    }
+}
