@@ -88,13 +88,14 @@ DEFAULT_SIMULATION = {
             .. code::
 
                 {
-                    "format": "{job_id};{arrival_time};{wait_time};{end_time};{run_time};",
+                    "format": "{job_id};{arrival_time};{wait_time};{end_time};{run_time};{slow_down};",
                     "attributes": {
                         "job_id": ("id", "str"),
-                        "arrival_time": ("queued_time", "accasim.utils.misc.str_datetime"),
+                        "arrival_time": ("queued_time", "int"),
                         "wait_time": ("waiting_time", "int"),
-                        "end_time": ("end_time", "accasim.utils.misc.str_datetime"),
-                        "run_time": ("running_time", "int")
+                        "end_time": ("end_time", "int"),
+                        "run_time": ("running_time", "int"),
+                        "slow_down": ("slow_down", "float")
                     }
                 }
                 
@@ -140,13 +141,14 @@ DEFAULT_SIMULATION = {
         "CONFIG_FOLDER_NAME": "config/",
         "RESULTS_FOLDER_NAME": "results/",
         "SCHEDULE_OUTPUT": {
-            "format": "{job_id};{arrival_time};{wait_time};{end_time};{run_time};",
+            "format": "{job_id};{arrival_time};{wait_time};{end_time};{run_time};{slow_down};",
             "attributes": {
                 "job_id": ("id", "str"),
-                "arrival_time": ("queued_time", "accasim.utils.misc.str_datetime"),
+                "arrival_time": ("queued_time", "int"),
                 "wait_time": ("waiting_time", "int"),
-                "end_time": ("end_time", "accasim.utils.misc.str_datetime"),
-                "run_time": ("running_time", "int")
+                "end_time": ("end_time", "int"),
+                "run_time": ("running_time", "int"),
+                "slow_down": ("slow_down", "float")
             }
         },
         "PPRINT_SCHEDULE_OUTPUT": {
@@ -471,11 +473,14 @@ def type_regexp(_type, new_regexp={}):
     """
     STR_TYPE = 'str'
     INT_TYPE = 'int'
+    FLOAT_TYPE = 'float'
 
     if _type == STR_TYPE:
         return '(?P<{}>[0-9a-zA-Z_\-\.@]+)'
     if _type == INT_TYPE:
         return '(?P<{}>\d+)'
+    if _type == FLOAT_TYPE:
+        return '(?P<{}>[-+]?\d+\.\d+|[-+]?\d+)'
     elif _type in CUSTOM_TYPES:
         return CUSTOM_TYPES[_type]
     elif _type in new_regexp:

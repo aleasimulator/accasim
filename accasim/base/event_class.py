@@ -419,6 +419,7 @@ class EventManager:
         e.running_time = e.end_time - e.start_time
         e.waiting_time = e.start_time - e.queued_time
         e.slowdown = float("{0:.2f}".format((e.waiting_time + e.running_time) / e.running_time)) if e.running_time != 0 else e.waiting_time if e.waiting_time != 0 else 1.0
+        e.slow_down = (e.waiting_time + max(e.running_time, 60)) / max(e.running_time, 60)
         self.slowdowns.append(e.slowdown)
         self.wtimes.append(e.waiting_time)
         self.finished += 1
