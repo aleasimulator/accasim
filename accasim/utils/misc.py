@@ -32,7 +32,7 @@ from json import dump as _dump, dumps as _dumps, load as _load, loads as _loads
 from time import perf_counter as clock
 from datetime import datetime as _datetime, timedelta as _timedelta, timezone as _timezone
 from re import compile as _compile
-from collections import Mapping
+from collections.abc import Mapping
 from itertools import islice
 from builtins import int, str
 
