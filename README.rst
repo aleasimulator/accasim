@@ -14,13 +14,13 @@ The original simulator implementation was unable to complete even relatively sho
 
 In `run.py`, edit lines 23 and 24 to select the workload and the `.json` file describing the HPC system infrastructure, e.g.:
 
-```python
+```ini
 workload = "workloads/frontier2025.swf"
 sys_cfg = "config/frontier.json"
 ```
 
 Save the file and execute the following commands:
-```bash
+```
 cd accasim
 python -m venv .venv
 source .venv/bin/activate
