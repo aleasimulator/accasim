@@ -12,24 +12,26 @@ The original simulator implementation was unable to complete even relatively sho
 
 **How to run the simulator**
 
-In `run.py`, edit lines 23 and 24 to select the workload and the `.json` file describing the HPC system infrastructure, e.g.:
+In ``run.py``, edit lines 23 and 24 to select the workload and the `.json` file describing the HPC system infrastructure, e.g.:
 
-```ini
-workload = "workloads/frontier2025.swf"
-sys_cfg = "config/frontier.json"
-```
+.. code-block:: python3
 
-Save the file and execute the following commands:
-```
-cd accasim
-python -m venv .venv
-source .venv/bin/activate
-pip install matplotlib psutil sortedcontainers numpy scipy
-python run.py
-```
+    workload = "workloads/frontier2025.swf"
+    sys_cfg = "config/frontier.json"
+
+
+Save the ``run.py`` file and execute the following commands:
+
+.. code-block:: bash
+
+   cd accasim
+   python -m venv .venv
+   source .venv/bin/activate
+   pip install matplotlib psutil sortedcontainers numpy scipy
+   python run.py
 
 **Note:** If you encounter any problems when running the simulator, consult an AI chatbot with the error message. 
-Most likely, the issue will be a minor incompatibility related to the Python version. We tested the simulator with Python 3.14.
+Most likely, the issue will be a minor incompatibility related to the Python version. We tested the simulator with ``Python 3.14``.
 
 
 AccaSim: a Workload Management Simulator for Job Dispatching Research
