@@ -1,3 +1,37 @@
+AccaSim for very large HPC system simulations (exascale+)
+=====================================================================
+This repository contains a slightly modified version of the AccaSim simulator, adapted to support large-scale simulations of exascale-like systems (Aurora, Frontier). 
+The original simulator implementation was unable to complete even relatively short segments of real exascale workload traces within a reasonable amount of time (or it crashed).
+
+**Main modifications:**
+
+- Fixed the threading issue in the method responsible for writing simulation results to a file.
+- Fixed the import statement `import collections.abc` (formerly part of `collections`).
+- Added the bounded slowdown metric to the simulation output.
+- Added workload traces and system configuration `.json` files to the `./workload` and `./config` directories, respectively.
+
+**How to run the simulator**
+
+In `run.py`, edit lines 23 and 24 to select the workload and the `.json` file describing the HPC system infrastructure, e.g.:
+
+```python
+workload = "workloads/frontier2025.swf"
+sys_cfg = "config/frontier.json"
+```
+
+Save the file and execute the following commands:
+```bash
+cd accasim
+python -m venv .venv
+source .venv/bin/activate
+pip install matplotlib psutil sortedcontainers numpy scipy
+python run.py
+```
+
+**Note:** If you encounter any problems when running the simulator, consult an AI chatbot with the error message. 
+Most likely, the issue will be a minor incompatibility related to the Python version. We tested the simulator with Python 3.14.
+
+
 AccaSim: a Workload Management Simulator for Job Dispatching Research
 =====================================================================
 
@@ -12,6 +46,7 @@ For more information please visit the `webpage of AccaSim <http://accasim.readth
 ***************
 What's new?
 ***************
+- 10-11-2026 Fixes to avoid crashes on large datasets (exascale-like).
 - 23-06-2018 Major improvements. Additional data is executed during Submission, Dispatching and Completion events (before and after).
 - 15-06-2018 Version 1.0 released.
 - 01-06-2018 New version of the dispatchers. The job requests are verified during the scheduling process.
